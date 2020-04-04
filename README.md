@@ -15,7 +15,7 @@ npm install --save use-mui-rich-form
 ## Usage
 
 ```jsx
-import React, { useEffect } from 'react';
+import React from 'react';
 import * as Mui from "@material-ui/core";
 import { useMuiRichForm, Form, Field, CircularButton } from 'use-mui-rich-form';
 import SaveIcon from "@material-ui/icons/Save";
@@ -42,6 +42,8 @@ const Example = () => {
         </Field>
 
         <CircularButton {...richForm.submitButton()} icon={<SaveIcon />} />
+        { richForm.success }
+        { richForm.failure }
       </Form>
     </div>
   )
