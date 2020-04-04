@@ -80,27 +80,4 @@ describe("useMuiRichForm", () => {
     expect(result.current.success).toBeNull();
     expect(result.current.failure).toBe("bar");
   });
-  // it('setProcessing', () => {
-  //
-  //   const { setProcessing, readOnly, processing } = renderHook(() => useMuiRichForm());
-  //
-  //   expect(processing).toBeFalsy();
-  //   expect(readOnly).toBeFalsy();
-  //
-  //   // Fast-forward 1sec
-  //   act(() => {
-  //     jest.advanceTimersByTime(1000);
-  //   });
-  //
-  //   // Check after total 1 sec
-  //   expect(result.current).toBe(1);
-  //
-  //   // Fast-forward 1 more sec
-  //   act(() => {
-  //     jest.advanceTimersByTime(1000);
-  //   });
-  //
-  //   // Check after total 2 sec
-  //   expect(result.current).toBe(2);
-  // })
 });

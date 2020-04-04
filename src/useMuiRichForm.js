@@ -1,43 +1,12 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
-type RichForm = {
-  // props
-  processing: boolean;
-  success: string | null;
-  readOnly: boolean;
-  failure: string | null;
-
-  // setters
-  setProcessing(): void;
-  setSuccess(
-    message: string | null,
-    options?: { readOnly?: boolean; dismissAfter?: number | null }
-  ): void;
-  setFailure(message: string | null): any;
-  setReadOnly: any;
-
-  // from react-hook-form
-  handleSubmit(onsubmit: any): any;
-  errors: any;
-  register: any;
-
-  // presets
-  submitButton(): {
-    type: string;
-    loading: boolean;
-    disabled: boolean;
-    success: boolean;
-  };
-  textField(name: string, options: any): object;
-};
-
-export default function useMuiRichForm(): RichForm {
+export default function useMuiRichForm() {
   const [processing, setProcessing] = useState(false);
-  const [success, setSuccess] = useState<string | null>(null);
+  const [success, setSuccess] = useState(null);
   const [readOnly, setReadOnly] = useState(false);
   const { handleSubmit, register, errors } = useForm();
-  const [failure, setFailure] = useState<string | null>(null);
+  const [failure, setFailure] = useState(null);
 
   return {
     processing,
@@ -51,7 +20,7 @@ export default function useMuiRichForm(): RichForm {
     setSuccess: (
       message,
       options = { readOnly: true, dismissAfter: null }
-    ): void => {
+    ) => {
       const { readOnly = true, dismissAfter = null } = options;
 
       setSuccess(message);
