@@ -5,7 +5,7 @@ export default function useMuiRichForm() {
   const [processing, setProcessing] = useState(false);
   const [success, setSuccess] = useState(null);
   const [readOnly, setReadOnly] = useState(false);
-  const { handleSubmit, register, errors } = useForm();
+  const { handleSubmit, register, errors, reset, setValue, getValues } = useForm();
   const [failure, setFailure] = useState(null);
 
   return {
@@ -19,26 +19,33 @@ export default function useMuiRichForm() {
     success,
     setSuccess: (
       message,
-      options = { readOnly: true, dismissAfter: null }
+      options = { readOnly: true, dismissAfter: null, resetForm: false }
     ) => {
-      const { readOnly = true, dismissAfter = null } = options;
+      const { readOnly = true, dismissAfter = null, resetForm = false } = options;
 
       setSuccess(message);
       setReadOnly(readOnly);
       setProcessing(false);
       setFailure(null);
 
-      // reset success after the given time
+      // remove success status after the given time
       if (dismissAfter) {
         setTimeout(() => {
           setSuccess(null);
         }, dismissAfter);
+      }
+
+      // reset values
+      if (resetForm) {
+        reset();
       }
     },
     readOnly,
     setReadOnly,
     handleSubmit,
     register,
+    setValue,
+    getValues,
     errors,
     failure,
     setFailure: (message) => {

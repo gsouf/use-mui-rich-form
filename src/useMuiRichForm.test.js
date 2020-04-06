@@ -14,6 +14,18 @@ describe("useMuiRichForm", () => {
     expect(result.current.failure).toBeNull();
   });
 
+  it("getValues and setValue", () => {
+    const { result } = renderHook(() => useMuiRichForm());
+
+    result.current.register({name: 'foo'});
+
+    act(() => {
+      result.current.setValue('foo', 'bar');
+    });
+
+    expect(result.current.getValues()).toEqual({'foo': 'bar'});
+  });
+
   it("set processing", () => {
     const { result } = renderHook(() => useMuiRichForm());
 
@@ -39,6 +51,32 @@ describe("useMuiRichForm", () => {
     expect(result.current.readOnly).toBe(true);
     expect(result.current.success).toBe("foo");
     expect(result.current.failure).toBeNull();
+  });
+
+  it("setSuccess and do NOT reset", () => {
+    const { result } = renderHook(() => useMuiRichForm());
+
+    result.current.register({name: 'foo'});
+
+    act(() => {
+      result.current.setValue('foo', 'bar');
+      result.current.setSuccess('done');
+    });
+
+    expect(result.current.getValues()).toEqual({'foo': 'bar'});
+  });
+
+  it("setSuccess and DO reset", () => {
+    const { result } = renderHook(() => useMuiRichForm());
+
+    result.current.register({name: 'foo'});
+
+    act(() => {
+      result.current.setValue('foo', 'bar');
+      result.current.setSuccess('done', {resetForm: true});
+    });
+
+    expect(result.current.getValues()).toEqual({});
   });
 
   it("set success not readOnly and use dismissAfter", () => {
