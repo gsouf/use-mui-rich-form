@@ -66,7 +66,7 @@ export default function useMuiRichForm() {
       };
     },
     textField: (name, options = {}) => ({
-      name: name + (options.required ? ' *' : ''),
+      name: name,
       error: errors[name],
       inputRef: register(options)
     }),
