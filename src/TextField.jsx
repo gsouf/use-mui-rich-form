@@ -52,7 +52,7 @@ export default function TextField(props) {
         <MD.TextField
           {...props.richForm.textField(props.name, props.formOptions)}
           label={"English Phrase"}
-          fullWidth
+          fullWidth={props.fullWidth}
         />
       </div>
       <div className={clsx(classes.error, { [classes.show]: errors })}>
