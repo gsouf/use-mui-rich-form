@@ -38,7 +38,7 @@ const Example = () => {
     <div>
       <Form richForm={richForm} onSubmit={onSubmit}>
         <Field error={richForm.error.someText}>
-          <Miu.TextField id="some_text" label="Some Text" richForm.textField('someText', {required: true}) />
+          <Miu.TextField id="some_text" label="Some Text" {...richForm.textField('someText', {required: true})} />
         </Field>
 
         <CircularButton {...richForm.submitButton()} icon={<SaveIcon />} />
