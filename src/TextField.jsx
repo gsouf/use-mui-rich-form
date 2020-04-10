@@ -50,7 +50,7 @@ export default function TextField(props) {
     <div className={clsx(classes.field, {[classes.fullWidth]: props.fullWidth})}>
       <div>
         <MD.TextField
-          {...props.richForm.textField(props.name)}
+          {...props.richForm.textField(props.name, props.formOptions)}
           label={"English Phrase"}
           fullWidth
         />
@@ -67,4 +67,5 @@ TextField.propTypes = {
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   fullWidth: PropTypes.bool,
+  formOptions: PropTypes.object
 };
