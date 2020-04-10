@@ -60,7 +60,7 @@ export default function CircularButton(props) {
     <div className={classes.wrapper}>
       <MD.Button
         type={props.type}
-        variant={props.variant}
+        variant="contained"
         disabled={props.disabled || props.loading}
         aria-label={props.label}
         color={props.color}
