@@ -60,7 +60,7 @@ export default function useMuiRichForm() {
         color: "primary",
         type: !processing && !readOnly ? "submit" : "button",
         loading: processing,
-        disabled: processing || readOnly,
+        disabled: !!(processing || readOnly),
         success: !!success,
         error: !!failure,
       };
