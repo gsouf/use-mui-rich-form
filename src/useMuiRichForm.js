@@ -17,7 +17,7 @@ export default function useMuiRichForm() {
       setFailure(null);
     },
     success,
-    setSuccess: (
+    setSuccess: async (
       message,
       options = { readOnly: true, dismissAfter: null, resetForm: false }
     ) => {
@@ -28,16 +28,17 @@ export default function useMuiRichForm() {
       setProcessing(false);
       setFailure(null);
 
-      // remove success status after the given time
-      if (dismissAfter) {
-        setTimeout(() => {
-          setSuccess(null);
-        }, dismissAfter);
-      }
-
       // reset values
       if (resetForm) {
         reset();
+      }
+
+      // remove success status after the given time
+      if (dismissAfter) {
+        return new Promise(resolve => setTimeout(() => {
+          setSuccess(null);
+          resolve();
+        }, dismissAfter));
       }
     },
     readOnly,
