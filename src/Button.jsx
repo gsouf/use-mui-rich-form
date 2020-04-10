@@ -70,11 +70,11 @@ export default function CircularButton(props) {
         {loading && (
           <MD.CircularProgress size={20} />
         )}
-        {!loading && props.error ? (
+        {!loading && (props.error ? (
           <ErrorOutlineRoundedIcon />
         ) : props.success ? (
           <CheckIcon />
-        ) : props.label}
+        ) : props.label)}
       </MD.Button>
     </div>
   );
