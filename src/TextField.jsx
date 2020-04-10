@@ -1,12 +1,15 @@
 import React from "react";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
+import * as MD from '@material-ui/core';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
     field: {
       display: "flex",
       flexDirection: "column",
+      alignItems: "stretch"
     },
     error: {
       opacity: 0,
@@ -38,15 +41,30 @@ function parseError(error) {
   }
 }
 
-export default function Field(props) {
+export default function TextField(props) {
   const classes = useStyles();
 
+  const errors = props.richForm.errors[props.name];
+
   return (
-    <div className={classes.field}>
-      <div>{props.children}</div>
-      <div className={clsx(classes.error, { [classes.show]: props.error })}>
-        {parseError(props.error)}
+    <div className={clsx(classes.field, {[classes.fullWidth]: props.fullWidth})}>
+      <div>
+        <MD.TextField
+          {...props.richForm.textField(props.name)}
+          label={"English Phrase"}
+          fullWidth
+        />
+      </div>
+      <div className={clsx(classes.error, { [classes.show]: errors })}>
+        {parseError(errors)}
       </div>
     </div>
   );
 }
+
+TextField.propTypes = {
+  richForm: PropTypes.object.isRequired,
+  label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  fullWidth: PropTypes.bool,
+};
