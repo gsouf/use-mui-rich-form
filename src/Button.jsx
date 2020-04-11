@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-export default function CircularButton(props) {
+export default function Button(props) {
   const classes = useStyles();
   const [loading, setLoading] = useState(false);
 
@@ -81,8 +81,6 @@ export default function CircularButton(props) {
 }
 
 CircularButton.propTypes = {
-  icon: PropTypes.any.isRequired,
-  successIcon: PropTypes.elementType,
   onClick: PropTypes.func,
   label: PropTypes.string,
   color: PropTypes.string,
