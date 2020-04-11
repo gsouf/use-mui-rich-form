@@ -7,6 +7,7 @@ export default function useMuiRichForm() {
   const [readOnly, setReadOnly] = useState(false);
   const { handleSubmit, register, errors, reset, setValue, getValues } = useForm();
   const [failure, setFailure] = useState(null);
+  const [buttonFailure, setButtonFailure] = useState(null);
 
   return {
     processing,
@@ -54,6 +55,9 @@ export default function useMuiRichForm() {
       setReadOnly(false);
       setProcessing(false);
       setSuccess(null);
+
+      setButtonFailure(true);
+      setTimeout(() => setButtonFailure(false), 1000)
     },
     submitButton: () => {
       return {
@@ -62,7 +66,7 @@ export default function useMuiRichForm() {
         loading: processing,
         disabled: !!(processing || readOnly),
         success: !!success,
-        error: !!failure,
+        error: buttonFailure,
       };
     },
     textField: (name, options = {}) => ({

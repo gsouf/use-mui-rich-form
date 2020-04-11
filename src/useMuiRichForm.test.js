@@ -117,5 +117,19 @@ describe("useMuiRichForm", () => {
     expect(result.current.readOnly).toBe(false);
     expect(result.current.success).toBeNull();
     expect(result.current.failure).toBe("bar");
+    expect(result.current.submitButton().error).toBe(true);
+
+    // is not dismissed before 1000
+    act(() => {
+      jest.advanceTimersByTime(999);
+    });
+    expect(result.current.submitButton().error).toBe(true);
+
+    // is dismissed at 1000
+    act(() => {
+      jest.advanceTimersByTime(1);
+    });
+    expect(result.current.failure).toBe("bar");
+    expect(result.current.submitButton().error).toBe(false);
   });
 });
