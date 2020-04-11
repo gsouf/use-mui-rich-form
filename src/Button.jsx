@@ -80,7 +80,7 @@ export default function Button(props) {
   );
 }
 
-CircularButton.propTypes = {
+Button.propTypes = {
   onClick: PropTypes.func,
   label: PropTypes.string,
   color: PropTypes.string,
