@@ -1,6 +1,6 @@
 {
   "name": "use-mui-rich-form",
-  "version": "1.8.0-alpha.3",
+  "version": "1.8.0-alpha.4",
   "description": "Opinionated hook to work with forms in material-ui",
   "author": "gsouf",
   "license": "MIT",
