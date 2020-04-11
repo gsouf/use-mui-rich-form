@@ -14,18 +14,18 @@ const useStyles = makeStyles((theme) =>
     },
     loading: {
       position: 'absolute',
-      top: 0,
-      left: 0,
-      bottom: 0,
-      right: 0,
+      top: '4rem',
+      left: '4rem',
+      bottom: '4rem',
+      right: '4rem',
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center'
     },
     spinner: {
       background: `rgba(0, 0, 0, 0.5)`,
-      borderRadius: theme.borderRadius,
-      padding: theme.spacing(3)
+      borderRadius: '5px',
+      padding: theme.spacing(1)
     }
   })
 );
@@ -43,7 +43,7 @@ export default function Form(props) {
       {richForm.loading && (
         <div className={classes.loading}>
           <div className={classes.spinner}>
-            <CircularProgress/>
+            <CircularProgress size={35}/>
           </div>
         </div>
       )}
