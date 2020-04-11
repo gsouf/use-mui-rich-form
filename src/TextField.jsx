@@ -54,6 +54,7 @@ export default function TextField(props) {
           label={props.label + (props.formOptions?.required ? ' *' : '')}
           fullWidth={props.fullWidth}
           autoFocus={props.autoFocus}
+          multiline={props.multiline}
         />
       </div>
       <div className={clsx(classes.error, { [classes.show]: errors })}>
@@ -69,5 +70,6 @@ TextField.propTypes = {
   name: PropTypes.string.isRequired,
   fullWidth: PropTypes.bool,
   formOptions: PropTypes.object,
-  autoFocus: PropTypes.bool
+  autoFocus: PropTypes.bool,
+  multiline: PropTypes.bool
 };
