@@ -10,6 +10,7 @@ describe("useMuiRichForm", () => {
 
     expect(result.current.processing).toBe(false);
     expect(result.current.readOnly).toBe(false);
+    expect(result.current.loading).toBe(false);
     expect(result.current.success).toBeNull();
     expect(result.current.failure).toBeNull();
   });
@@ -26,6 +27,20 @@ describe("useMuiRichForm", () => {
     expect(result.current.getValues()).toEqual({'foo': 'bar'});
   });
 
+  it("set loading", () => {
+    const { result } = renderHook(() => useMuiRichForm());
+
+    act(() => {
+      result.current.setLoading();
+    });
+
+    expect(result.current.loading).toBe(true);
+    expect(result.current.processing).toBe(false);
+    expect(result.current.readOnly).toBe(true);
+    expect(result.current.success).toBeNull();
+    expect(result.current.failure).toBeNull();
+  });
+
   it("set processing", () => {
     const { result } = renderHook(() => useMuiRichForm());
 
@@ -35,6 +50,7 @@ describe("useMuiRichForm", () => {
 
     expect(result.current.processing).toBe(true);
     expect(result.current.readOnly).toBe(true);
+    expect(result.current.loading).toBe(false);
     expect(result.current.success).toBeNull();
     expect(result.current.failure).toBeNull();
   });
@@ -49,6 +65,7 @@ describe("useMuiRichForm", () => {
 
     expect(result.current.processing).toBe(false);
     expect(result.current.readOnly).toBe(true);
+    expect(result.current.loading).toBe(false);
     expect(result.current.success).toBe("foo");
     expect(result.current.failure).toBeNull();
   });
@@ -89,6 +106,7 @@ describe("useMuiRichForm", () => {
 
     expect(result.current.processing).toBe(false);
     expect(result.current.readOnly).toBe(false);
+    expect(result.current.loading).toBe(false);
     expect(result.current.success).toBe("foo");
     expect(result.current.failure).toBeNull();
 
@@ -115,6 +133,7 @@ describe("useMuiRichForm", () => {
 
     expect(result.current.processing).toBe(false);
     expect(result.current.readOnly).toBe(false);
+    expect(result.current.loading).toBe(false);
     expect(result.current.success).toBeNull();
     expect(result.current.failure).toBe("bar");
     expect(result.current.submitButton().error).toBe(true);

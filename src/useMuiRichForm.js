@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 export default function useMuiRichForm() {
+  const [loading, setLoading] = useState(false);
   const [processing, setProcessing] = useState(false);
   const [success, setSuccess] = useState(null);
   const [readOnly, setReadOnly] = useState(false);
@@ -10,9 +11,18 @@ export default function useMuiRichForm() {
   const [buttonFailure, setButtonFailure] = useState(null);
 
   return {
+    loading,
+    setLoading: () => {
+      setLoading(true);
+      setProcessing(false);
+      setReadOnly(true);
+      setSuccess(null);
+      setFailure(null);
+    },
     processing,
     setProcessing: () => {
       setProcessing(true);
+      setLoading(false);
       setReadOnly(true);
       setSuccess(null);
       setFailure(null);
@@ -27,6 +37,7 @@ export default function useMuiRichForm() {
       setSuccess(message);
       setReadOnly(readOnly);
       setProcessing(false);
+      setLoading(false);
       setFailure(null);
 
       // reset values
@@ -54,6 +65,7 @@ export default function useMuiRichForm() {
       setFailure(message);
       setReadOnly(false);
       setProcessing(false);
+      setLoading(false);
       setSuccess(null);
 
       setButtonFailure(true);
