@@ -41,6 +41,21 @@ describe("useMuiRichForm", () => {
     expect(result.current.failure).toBeNull();
   });
 
+  it("set ready", () => {
+    const { result } = renderHook(() => useMuiRichForm());
+
+    act(() => {
+      result.current.setLoading();
+      result.current.setReady();
+    });
+
+    expect(result.current.loading).toBe(false);
+    expect(result.current.processing).toBe(false);
+    expect(result.current.readOnly).toBe(false);
+    expect(result.current.success).toBeNull();
+    expect(result.current.failure).toBeNull();
+  });
+
   it("set processing", () => {
     const { result } = renderHook(() => useMuiRichForm());
 

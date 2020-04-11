@@ -19,6 +19,13 @@ export default function useMuiRichForm() {
       setSuccess(null);
       setFailure(null);
     },
+    setReady: () => {
+      setLoading(false);
+      setProcessing(false);
+      setReadOnly(false);
+      setSuccess(null);
+      setFailure(null);
+    },
     processing,
     setProcessing: () => {
       setProcessing(true);
