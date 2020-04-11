@@ -53,6 +53,7 @@ export default function TextField(props) {
           {...props.richForm.textField(props.name, props.formOptions)}
           label={props.label + (props.formOptions?.required ? ' *' : '')}
           fullWidth={props.fullWidth}
+          autoFocus={props.autoFocus}
         />
       </div>
       <div className={clsx(classes.error, { [classes.show]: errors })}>
@@ -67,5 +68,6 @@ TextField.propTypes = {
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   fullWidth: PropTypes.bool,
-  formOptions: PropTypes.object
+  formOptions: PropTypes.object,
+  autoFocus: PropTypes.bool
 };
