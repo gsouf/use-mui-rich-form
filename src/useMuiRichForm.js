@@ -6,7 +6,15 @@ export default function useMuiRichForm() {
   const [processing, setProcessing] = useState(false);
   const [success, setSuccess] = useState(null);
   const [readOnly, setReadOnly] = useState(false);
-  const { handleSubmit, register, errors, reset, setValue, getValues } = useForm();
+  const {
+    handleSubmit,
+    register,
+    errors,
+    reset,
+    setValue,
+    getValues,
+    control,
+  } = useForm();
   const [failure, setFailure] = useState(null);
   const [buttonFailure, setButtonFailure] = useState(null);
 
@@ -39,7 +47,11 @@ export default function useMuiRichForm() {
       message,
       options = { readOnly: true, dismissAfter: null, resetForm: false }
     ) => {
-      const { readOnly = true, dismissAfter = null, resetForm = false } = options;
+      const {
+        readOnly = true,
+        dismissAfter = null,
+        resetForm = false,
+      } = options;
 
       setSuccess(message);
       setReadOnly(readOnly);
@@ -49,21 +61,25 @@ export default function useMuiRichForm() {
 
       // reset values
       if (resetForm) {
+        console.log("foobar");
         reset();
       }
 
       // remove success status after the given time
       if (dismissAfter) {
-        return new Promise(resolve => setTimeout(() => {
-          setSuccess(null);
-          resolve();
-        }, dismissAfter));
+        return new Promise((resolve) =>
+          setTimeout(() => {
+            setSuccess(null);
+            resolve();
+          }, dismissAfter)
+        );
       }
     },
     readOnly,
     setReadOnly,
     handleSubmit,
     register,
+    control,
     setValue,
     getValues,
     errors,
@@ -76,7 +92,7 @@ export default function useMuiRichForm() {
       setSuccess(null);
 
       setButtonFailure(true);
-      setTimeout(() => setButtonFailure(false), 1000)
+      setTimeout(() => setButtonFailure(false), 1000);
     },
     submitButton: () => {
       return {
@@ -88,10 +104,5 @@ export default function useMuiRichForm() {
         error: buttonFailure,
       };
     },
-    textField: (name, options = {}) => ({
-      name: name,
-      error: errors[name],
-      inputRef: register(options)
-    }),
   };
 }

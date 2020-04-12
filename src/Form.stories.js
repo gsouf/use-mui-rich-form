@@ -3,6 +3,8 @@ import { action } from "@storybook/addon-actions";
 import Form from "./Form";
 import TextField from "./TextField";
 import Button from "./Button";
+import Select from "./Select";
+import { MenuItem } from "@material-ui/core";
 import useMuiRichForm from "./useMuiRichForm";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 
@@ -36,6 +38,12 @@ export const DefaultState = () => {
       >
         <TextField richForm={richForm} label={"simple"} name={"simple"} />
         <TextField
+          richForm={richForm}
+          label={"autofocus"}
+          name={"autofocus"}
+          autoFocus
+        />
+        <TextField
           multiline
           richForm={richForm}
           label={"multiline"}
@@ -47,6 +55,22 @@ export const DefaultState = () => {
           label={"fullwidth"}
           name={"fullwidth"}
         />
+        <TextField
+          richForm={richForm}
+          label={"required"}
+          name={"required"}
+          formOptions={{ required: true }}
+        />
+        <Select
+          richForm={richForm}
+          label={"select"}
+          name={"select"}
+          formOptions={{ required: true }}
+        >
+          <MenuItem value="">none</MenuItem>
+          <MenuItem value="foo">Foo</MenuItem>
+          <MenuItem value="bar">Bar</MenuItem>
+        </Select>
         <Button {...richForm.submitButton()} label={"submit"} />
         {richForm.failure}
         {richForm.success}

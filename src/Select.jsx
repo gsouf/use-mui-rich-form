@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import * as MD from "@material-ui/core";
@@ -42,47 +42,61 @@ function parseError(error) {
   }
 }
 
-export default function TextField(props) {
+export default function Select(props) {
   const classes = useStyles();
+  const refId = useRef(null);
+
+  if (null === refId.current) {
+    refId.current = `${props.name}_${
+      new Date().getTime() + Math.floor(Math.random() * Math.floor(1000))
+    }`;
+  }
 
   const errors = props.richForm.errors[props.name];
 
   return (
-    <div
-      className={clsx(classes.field, { [classes.fullWidth]: props.fullWidth })}
+    <MD.FormControl
+      error={!!errors}
+      fullWidth={props.fullWidth}
+      className={classes.field}
     >
-      <div>
-        <Controller
-          name={props.name}
-          as={
-            <MD.TextField
-              error={!!errors}
-              label={props.label + (props.formOptions?.required ? " *" : "")}
-              fullWidth={props.fullWidth}
-              autoFocus={props.autoFocus}
-              multiline={props.multiline}
-              {...props.TextFieldProps}
-            />
-          }
-          control={props.richForm.control}
-          defaultValue={props.defaultValue || ""}
-        />
-      </div>
-      <div className={clsx(classes.error, { [classes.show]: errors })}>
+      <MD.InputLabel id={refId.current}>
+        {props.label + (props.formOptions?.required ? " *" : "")}
+      </MD.InputLabel>
+      <Controller
+        name={props.name}
+        as={
+          <MD.Select
+            labelId={refId.current}
+            fullWidth={props.fullWidth}
+            autoFocus={props.autoFocus}
+            multiple={props.multiple}
+            {...props.TextFieldProps}
+          >
+            {props.children}
+          </MD.Select>
+        }
+        control={props.richForm.control}
+        defaultValue={props.defaultValue || ""}
+      />
+
+      <MD.FormHelperText
+        className={clsx(classes.error, { [classes.show]: errors })}
+      >
         {parseError(errors)}
-      </div>
-    </div>
+      </MD.FormHelperText>
+    </MD.FormControl>
   );
 }
 
-TextField.propTypes = {
+Select.propTypes = {
   richForm: PropTypes.object.isRequired,
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   fullWidth: PropTypes.bool,
   formOptions: PropTypes.object,
   autoFocus: PropTypes.bool,
-  multiline: PropTypes.bool,
-  TextFieldProps: PropTypes.object,
+  SelectProps: PropTypes.object,
+  multiple: PropTypes.bool,
   defaultValue: PropTypes.any,
 };
