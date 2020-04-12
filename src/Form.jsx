@@ -1,11 +1,12 @@
 import React from "react";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { CircularProgress } from "@material-ui/core";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
-      position: 'relative'
+      position: "relative",
     },
     fieldset: {
       margin: 0,
@@ -13,20 +14,20 @@ const useStyles = makeStyles((theme) =>
       border: 0,
     },
     loading: {
-      position: 'absolute',
-      top: '4rem',
-      left: '4rem',
-      bottom: '4rem',
-      right: '4rem',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center'
+      position: "absolute",
+      top: "4rem",
+      left: "4rem",
+      bottom: "4rem",
+      right: "4rem",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
     },
     spinner: {
       background: `rgba(0, 0, 0, 0.5)`,
-      borderRadius: '5px',
-      padding: theme.spacing(1)
-    }
+      borderRadius: "5px",
+      padding: theme.spacing(1),
+    },
   })
 );
 
@@ -36,17 +37,26 @@ export default function Form(props) {
   const { disabled, children, richForm, ...rest } = props;
 
   return (
-    <form {...rest} className={classes.root} onSubmit={props.richForm.handleSubmit(props.onSubmit)}>
+    <form
+      {...rest}
+      className={classes.root}
+      onSubmit={props.richForm.handleSubmit(props.onSubmit)}
+    >
       <fieldset className={classes.fieldset} disabled={richForm.readOnly}>
         {children}
       </fieldset>
       {richForm.loading && (
         <div className={classes.loading}>
           <div className={classes.spinner}>
-            <CircularProgress size={35}/>
+            <CircularProgress size={35} />
           </div>
         </div>
       )}
     </form>
   );
 }
+
+Form.propTypes = {
+  richForm: PropTypes.object.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+};
