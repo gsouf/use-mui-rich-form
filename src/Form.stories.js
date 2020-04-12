@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-export const DefaultState = () => {
+export const Demo = () => {
   const classes = useStyles();
   const richForm = useMuiRichForm();
 
@@ -114,6 +114,53 @@ export const DefaultState = () => {
           }}
         >
           failure
+        </button>
+      </div>
+    </>
+  );
+};
+
+export const SetValue = () => {
+  const classes = useStyles();
+  const richForm = useMuiRichForm();
+
+  return (
+    <>
+      <Form
+        richForm={richForm}
+        onSubmit={(v) => {
+          console.log("foo");
+          action("submit")(JSON.stringify(v));
+        }}
+      >
+        <TextField richForm={richForm} label={"simple"} name={"simple"} />
+        <Select
+          richForm={richForm}
+          label={"select"}
+          name={"select"}
+          formOptions={{ required: true }}
+        >
+          <MenuItem value="">none</MenuItem>
+          <MenuItem value="foo">Foo</MenuItem>
+          <MenuItem value="bar">Bar</MenuItem>
+        </Select>
+        <Button {...richForm.submitButton()} label={"submit"} />
+        {richForm.failure}
+        {richForm.success}
+      </Form>
+      <hr />
+      <div className={classes.actions}>
+        <button onClick={() => richForm.setValue("simple", "foo")}>
+          text:foo
+        </button>
+        <button onClick={() => richForm.setValue("simple", "bar")}>
+          text:bar
+        </button>
+        <button onClick={() => richForm.setValue("select", "foo")}>
+          select:foo
+        </button>
+        <button onClick={() => richForm.setValue("select", "bar")}>
+          select:bar
         </button>
       </div>
     </>
