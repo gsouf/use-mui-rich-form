@@ -61,10 +61,11 @@ export default function Select(props) {
       className={classes.field}
     >
       <MD.InputLabel id={refId.current}>
-        {props.label + (props.formOptions?.required ? " *" : "")}
+        {props.label + (props.rules?.required ? " *" : "")}
       </MD.InputLabel>
       <Controller
         name={props.name}
+        rules={props.rules}
         as={
           <MD.Select
             labelId={refId.current}
@@ -72,6 +73,7 @@ export default function Select(props) {
             autoFocus={props.autoFocus}
             multiple={props.multiple}
             {...props.TextFieldProps}
+            disabled={props.richForm.readOnly}
           >
             {props.children}
           </MD.Select>
@@ -94,7 +96,7 @@ Select.propTypes = {
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   fullWidth: PropTypes.bool,
-  formOptions: PropTypes.object,
+  rules: PropTypes.object,
   autoFocus: PropTypes.bool,
   SelectProps: PropTypes.object,
   multiple: PropTypes.bool,

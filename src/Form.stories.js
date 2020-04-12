@@ -59,13 +59,13 @@ export const Demo = () => {
           richForm={richForm}
           label={"required"}
           name={"required"}
-          formOptions={{ required: true }}
+          rules={{ required: true }}
         />
         <Select
           richForm={richForm}
           label={"select"}
           name={"select"}
-          formOptions={{ required: true }}
+          rules={{ required: true }}
         >
           <MenuItem value="">none</MenuItem>
           <MenuItem value="foo">Foo</MenuItem>
@@ -138,7 +138,7 @@ export const SetValue = () => {
           richForm={richForm}
           label={"select"}
           name={"select"}
-          formOptions={{ required: true }}
+          rules={{ required: true }}
         >
           <MenuItem value="">none</MenuItem>
           <MenuItem value="foo">Foo</MenuItem>

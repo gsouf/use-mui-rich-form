@@ -54,10 +54,11 @@ export default function TextField(props) {
       <div>
         <Controller
           name={props.name}
+          rules={props.rules}
           as={
             <MD.TextField
               error={!!errors}
-              label={props.label + (props.formOptions?.required ? " *" : "")}
+              label={props.label + (props.rules?.required ? " *" : "")}
               fullWidth={props.fullWidth}
               autoFocus={props.autoFocus}
               multiline={props.multiline}
@@ -80,7 +81,7 @@ TextField.propTypes = {
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   fullWidth: PropTypes.bool,
-  formOptions: PropTypes.object,
+  rules: PropTypes.object,
   autoFocus: PropTypes.bool,
   multiline: PropTypes.bool,
   TextFieldProps: PropTypes.object,
