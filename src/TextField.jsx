@@ -62,6 +62,10 @@ export default function TextField(props) {
               fullWidth={props.fullWidth}
               autoFocus={props.autoFocus}
               multiline={props.multiline}
+              type={props.type}
+              inputProps={props.inputProps}
+              rows={props.rows}
+              rowsMax={props.rowsMax}
               {...props.TextFieldProps}
             />
           }
@@ -86,4 +90,8 @@ TextField.propTypes = {
   multiline: PropTypes.bool,
   TextFieldProps: PropTypes.object,
   defaultValue: PropTypes.any,
+  type: PropTypes.string,
+  inputProps: PropTypes.any,
+  rows: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
