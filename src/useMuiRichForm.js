@@ -61,8 +61,13 @@ export default function useMuiRichForm() {
 
       // reset values
       if (resetForm) {
-        console.log("foobar");
-        reset();
+        // need to empty the data that we pass to reset
+        // there is an issue with controlled components, reset does not work well
+        const data = getValues();
+        for (const key in data) {
+          data[key] = null;
+        }
+        reset(data);
       }
 
       // remove success status after the given time
