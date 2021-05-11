@@ -1,6 +1,6 @@
 # use-mui-rich-form
 
-An opinionated react hook to make it easier to work with form stats (processing/success/failure)
+An experimental react hook to make it easier to work with form stats (processing/success/failure)
 with [material-ui](https://material-ui.com/) and [react-hook-forms](https://react-hook-form.com/)
 and that features ready to use Mui components.
 
